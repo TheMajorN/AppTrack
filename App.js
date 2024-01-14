@@ -30,7 +30,7 @@ export default function App() {
   const [companyName, setCompanyName] = useState('');
   const [positionTitle, setPositionTitle] = useState('');
   const [dateApplied, setDateApplied] = useState(new Date().toLocaleDateString());
-  const [selectedStatus, setSelectedStatus] = useState(statusOptions[0].label);
+  const [selectedStatus, setSelectedStatus] = useState();
   const [reminderDate, setReminderDate] = useState(new Date());
 
   const addJob = () => {
@@ -82,8 +82,9 @@ const renderStatusDropdown = () => (
   <View style={styles.dropdownContainer}>
     <Text>Status</Text>
     <Picker
-      selectedValue={statusOptions.label}
-      onValueChange={(itemValue, itemIndex) => setSelectedStatus(statusOptions[itemIndex])}
+    style={{ width: 200, backgroundColor: selectedStatus.color, color: "black", fontSize: 16 }}
+      selectedValue={selectedStatus.label}
+      onValueChange={(itemValue, i) => setSelectedStatus(statusOptions[i])}
     >
       {statusOptions.map((option) => (
         <Picker.Item
